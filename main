@@ -1,0 +1,100 @@
+#define pino_sinal_analógico A0​
+
+#define pino_led_vermelho 5​
+
+#define pino_led_amarelo 6​
+
+#define pino_led_verde 7​
+
+#define bombaagua 9​
+
+int valor_analógico;​
+
+configuração vazia () {​
+
+// Codigo de configuração aqui, para ser executado uma vez:​
+
+Serial.begin (9600);​
+
+pinMode (pino_sinal_analógico, INPUT);​
+
+pinMode (pino_led_vermelho, SAÍDA);​
+
+pinMode (pino_led_amarelo, SAÍDA);​
+
+pinMode (pino_led_verde, SAÍDA);​
+
+pinMode (bombaagua, SAÍDA);}​
+
+laço vazio () {​
+
+// código principal , rodar em loop:​
+
+// le o valor analógico do pino, A0 do sensor​
+
+valor_analógico = analogRead (pino_sinal_analógico);​
+
+// mostra o valor da porta analógica sem sinal do monitor​
+
+Serial.print ("porta analógica");​
+
+Serial.print (valor_analógico);​
+
+// Solo umido, acenda o led verde
+if (valor_analógico> 0 && valor_analógico <400) ​
+
+{​
+
+Serial.println("Status: Solo umido");​
+
+digitalWrite (pino_led_verde, ALTO);​
+
+digitalWrite (pino_led_vermelho, LOW);​
+
+digitalWrite (pino_led_amarelo, BAIXO);​
+
+digitalWrite (bombaagua, BAIXO);​
+
+}​
+
+// Solo com umidade moderada, acesa led amarelo​
+
+if (valor_analógico> 400 && valor_analógico <970)​
+
+{​
+
+Serial.println ("Status: Umidade moderada");​
+
+digitalWrite (pino_led_amarelo, ALTO);​
+
+digitalWrite (pino_led_verde, BAIXO);​
+
+digitalWrite (pino_led_vermelho, LOW);​
+
+digitalWrite (bombaagua, BAIXO);​
+
+}​
+
+// Solo seco, acende led vermelho e aciona bomba​
+
+if (valor_analógico> 970 && valor_analógico <1024) {​
+
+Serial.println ("Status: Apenas segundo");​
+
+digitalWrite (pino_led_vermelho, ALTO);​
+
+digitalWrite (pino_led_verde, BAIXO);​
+
+digitalWrite (pino_led_amarelo, BAIXO);​
+
+digitalWrite (bombaagua, ALTO);​
+
+}vazio apagaleds () {​
+
+digitalWrite (pino_led_vermelho, LOW);​
+
+digitalWrite (pino_led_amarelo, BAIXO);​
+
+digitalWrite (pino_led_verde, BAIXO);​
+
+}
