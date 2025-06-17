@@ -12,8 +12,6 @@ int valor_analógico;​
 
 configuração vazia () {​
 
-// Codigo de configuração aqui, para ser executado uma vez:​
-
 Serial.begin (9600);​
 
 pinMode (pino_sinal_analógico, INPUT);​
@@ -28,19 +26,13 @@ pinMode (bombaagua, SAÍDA);}​
 
 laço vazio () {​
 
-// código principal , rodar em loop:​
-
-// le o valor analógico do pino, A0 do sensor​
-
 valor_analógico = analogRead (pino_sinal_analógico);​
 
-// mostra o valor da porta analógica sem sinal do monitor​
 
 Serial.print ("porta analógica");​
 
 Serial.print (valor_analógico);​
 
-// Solo umido, acenda o led verde
 if (valor_analógico> 0 && valor_analógico <400) ​
 
 {​
@@ -56,8 +48,7 @@ digitalWrite (pino_led_amarelo, BAIXO);​
 digitalWrite (bombaagua, BAIXO);​
 
 }​
-
-// Solo com umidade moderada, acesa led amarelo​
+​
 
 if (valor_analógico> 400 && valor_analógico <970)​
 
@@ -74,8 +65,7 @@ digitalWrite (pino_led_vermelho, LOW);​
 digitalWrite (bombaagua, BAIXO);​
 
 }​
-
-// Solo seco, acende led vermelho e aciona bomba​
+​
 
 if (valor_analógico> 970 && valor_analógico <1024) {​
 
